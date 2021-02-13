@@ -3,7 +3,7 @@ package br.com.rodkrtz.projuris.controle.manutencao.service.impl;
 import br.com.rodkrtz.projuris.controle.manutencao.dao.ClienteDao;
 import br.com.rodkrtz.projuris.controle.manutencao.exception.ExceptionType;
 import br.com.rodkrtz.projuris.controle.manutencao.model.entity.Cliente;
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroClienteRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddClienteRequest;
 import br.com.rodkrtz.projuris.controle.manutencao.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,18 +27,18 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente cadastrarCliente(CadastroClienteRequest cadastroClienteRequest) {
-        Cliente cliente = clienteDao.findByEmail(cadastroClienteRequest.getEmail());
+    public Cliente addCliente(AddClienteRequest addClienteRequest) {
+        Cliente cliente = clienteDao.findByEmail(addClienteRequest.getEmail());
 
         if (cliente != null) {
-            ExceptionType.BAD_REQUEST.throwException("Já existe um cliente cadastrado com esse email ".concat(cadastroClienteRequest.getEmail()));
+            ExceptionType.BAD_REQUEST.throwException("Já existe um cliente registrado com esse email ".concat(addClienteRequest.getEmail()));
         }
 
         cliente = new Cliente()
-                .setEmail(cadastroClienteRequest.getEmail())
-                .setEndereco(cadastroClienteRequest.getEndereco())
-                .setNome(cadastroClienteRequest.getNome())
-                .setTelefone(cadastroClienteRequest.getTelefone());
+                .setEmail(addClienteRequest.getEmail())
+                .setEndereco(addClienteRequest.getEndereco())
+                .setNome(addClienteRequest.getNome())
+                .setTelefone(addClienteRequest.getTelefone());
 
         clienteDao.save(cliente);
 

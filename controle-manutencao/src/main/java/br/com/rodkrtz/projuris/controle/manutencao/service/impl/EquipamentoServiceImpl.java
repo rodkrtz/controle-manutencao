@@ -4,7 +4,7 @@ import br.com.rodkrtz.projuris.controle.manutencao.dao.ClienteDao;
 import br.com.rodkrtz.projuris.controle.manutencao.dao.EquipamentoDao;
 import br.com.rodkrtz.projuris.controle.manutencao.model.entity.Cliente;
 import br.com.rodkrtz.projuris.controle.manutencao.model.entity.Equipamento;
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroEquipamentoRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddEquipamentoRequest;
 import br.com.rodkrtz.projuris.controle.manutencao.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,24 +29,24 @@ public class EquipamentoServiceImpl implements EquipamentoService {
     }
 
     @Override
-    public Equipamento cadastrarEquipamento(CadastroEquipamentoRequest cadastroEquipamentoRequest) {
+    public Equipamento addEquipamento(AddEquipamentoRequest addEquipamentoRequest) {
 
-        Cliente cliente = clienteDao.findByEmail(cadastroEquipamentoRequest.getEmailCliente());
+        Cliente cliente = clienteDao.findByEmail(addEquipamentoRequest.getEmailCliente());
         if (cliente == null) {
-            throw new NoSuchElementException("Não foi encontrado um cliente com esse email ".concat(cadastroEquipamentoRequest.getEmailCliente()));
+            throw new NoSuchElementException("Não foi encontrado um cliente com esse email ".concat(addEquipamentoRequest.getEmailCliente()));
         }
 
-        Equipamento equipamento = equipamentoDao.findByNumeroSerie(cadastroEquipamentoRequest.getNumeroSerieEquipamento());
+        Equipamento equipamento = equipamentoDao.findByNumeroSerie(addEquipamentoRequest.getNumeroSerieEquipamento());
         if (equipamento != null) {
-            throw new IllegalArgumentException("Já existe um equipamento cadastrado com esse número de série");
+            throw new IllegalArgumentException("Já existe um equipamento registrado com esse número de série");
         }
 
         equipamento = new Equipamento()
                 .setCliente(cliente)
-                .setMarca(cadastroEquipamentoRequest.getMarcaEquipamento())
-                .setNome(cadastroEquipamentoRequest.getNomeEquipamento())
-                .setTipo(cadastroEquipamentoRequest.getTipoEquipamento())
-                .setNumeroSerie(cadastroEquipamentoRequest.getNumeroSerieEquipamento());
+                .setMarca(addEquipamentoRequest.getMarcaEquipamento())
+                .setNome(addEquipamentoRequest.getNomeEquipamento())
+                .setTipo(addEquipamentoRequest.getTipoEquipamento())
+                .setNumeroSerie(addEquipamentoRequest.getNumeroSerieEquipamento());
 
         equipamentoDao.save(equipamento);
 

@@ -1,6 +1,6 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroClienteRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddClienteRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -72,10 +72,10 @@ class ClienteControllerTest {
     class Put {
 
         @Test
-        @DisplayName("Deve cadastrar um cliente")
+        @DisplayName("Deve adicionar um cliente")
         void teste1() throws Exception {
             //given
-            CadastroClienteRequest cadastroClienteRequest = new CadastroClienteRequest()
+            AddClienteRequest addClienteRequest = new AddClienteRequest()
                     .setEmail("email4@email.com.br")
                     .setEndereco("Rua Quatro, 4")
                     .setNome("Fulano da Silva")
@@ -84,7 +84,7 @@ class ClienteControllerTest {
             //when
             ResultActions performPut = mockMvc.perform(put(BASE_URL)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(cadastroClienteRequest)));
+                    .content(objectMapper.writeValueAsString(addClienteRequest)));
 
             //then
             performPut

@@ -34,7 +34,7 @@ public class OrdemServiceAcompanhamentoServiceImpl implements OrdemServicoAcompa
     public OrdemServicoAcompanhamento addAcompanhamento(AddOrdemServicoAcompanhamentoRequest addOrdemServicoAcompanhamentoRequest) {
         OrdemServico ordemServico = ordemServicoDao.findByChaveId(addOrdemServicoAcompanhamentoRequest.getChaveIdOrdemServico());
         if (ordemServico == null) {
-            ExceptionType.NOT_FOUND.throwException("Não foi encontrado uma ordem de servico para essa operação");
+            ExceptionType.NOT_FOUND.throwException("Não foi encontrado uma ordem de servico para essa operacao");
         }
 
         List<OrdemServicoAcompanhamento> acompanhamentos =

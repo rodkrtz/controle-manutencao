@@ -1,6 +1,6 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroEquipamentoRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddEquipamentoRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,11 +29,11 @@ class EquipamentoControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Deve cadastrar um equipamento")
+    @DisplayName("Deve adicionar um equipamento")
     void teste1() throws Exception {
 
         //given
-        CadastroEquipamentoRequest cadastroEquipamentoRequest = new CadastroEquipamentoRequest()
+        AddEquipamentoRequest addEquipamentoRequest = new AddEquipamentoRequest()
                 .setMarcaEquipamento("TRAMONTINA")
                 .setNomeEquipamento("Faca de Cozinha Master")
                 .setTipoEquipamento("Faca de Cozinha")
@@ -43,7 +43,7 @@ class EquipamentoControllerTest {
         //when
         ResultActions putResult = mockMvc.perform(put(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(cadastroEquipamentoRequest)));
+                .content(objectMapper.writeValueAsString(addEquipamentoRequest)));
 
         //then
         putResult.andDo(print())
@@ -51,7 +51,7 @@ class EquipamentoControllerTest {
                         status().isCreated()
                 );
         //then
-        mockMvc.perform(get(BASE_URL.concat("/").concat(cadastroEquipamentoRequest.getNumeroSerieEquipamento())))
+        mockMvc.perform(get(BASE_URL.concat("/").concat(addEquipamentoRequest.getNumeroSerieEquipamento())))
                 .andExpect(status().isOk());
     }
 }

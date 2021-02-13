@@ -30,7 +30,7 @@ public class OrdemServicoServiceImpl implements OrdemServicoService {
         OrdemServico ordemServico = ordemServicoDao.findByChaveId(chaveId);
 
         if (ordemServico == null) {
-            ExceptionType.NOT_FOUND.throwException("Não foi encontrado uma ordem de serviço com essea chave" + chaveId);
+            ExceptionType.NOT_FOUND.throwException("Não foi encontrado uma ordem de serviço com essea chave " + chaveId);
         }
 
         return ordemServico;

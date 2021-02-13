@@ -2,7 +2,7 @@ package br.com.rodkrtz.projuris.controle.manutencao.controller.v1.impl;
 
 import br.com.rodkrtz.projuris.controle.manutencao.controller.v1.EquipamentoController;
 import br.com.rodkrtz.projuris.controle.manutencao.model.entity.Equipamento;
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroEquipamentoRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddEquipamentoRequest;
 import br.com.rodkrtz.projuris.controle.manutencao.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,10 +25,8 @@ public class EquipamentoControllerImpl implements EquipamentoController {
     }
 
     @Override
-    public ResponseEntity<?> cadastrarEquipamento(CadastroEquipamentoRequest cadastroEquipamentoRequest) {
-        Equipamento equipamento = equipamentoService.cadastrarEquipamento(cadastroEquipamentoRequest);
+    public ResponseEntity<?> addEquipamento(AddEquipamentoRequest addEquipamentoRequest) {
+        Equipamento equipamento = equipamentoService.addEquipamento(addEquipamentoRequest);
         return new ResponseEntity<>(equipamento, HttpStatus.CREATED);
-
-        //        return equipamentoService.cadastrarEquipamento(cadastroEquipamentoRequest);
     }
 }

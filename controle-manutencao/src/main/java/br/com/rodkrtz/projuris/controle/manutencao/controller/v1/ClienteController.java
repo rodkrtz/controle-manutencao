@@ -1,6 +1,6 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroClienteRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddClienteRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public interface ClienteController {
 
     @PutMapping
-    ResponseEntity<?> cadastrarCliente(@RequestBody CadastroClienteRequest cadastroClienteRequest);
+    ResponseEntity<?> addCliente(@RequestBody AddClienteRequest addClienteRequest);
 
     @GetMapping("{email}")
     ResponseEntity<?> getCliente(@PathVariable String email);

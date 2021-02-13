@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class CadastroClienteRequest {
+public class AddClienteRequest {
 
     private String nome;
 

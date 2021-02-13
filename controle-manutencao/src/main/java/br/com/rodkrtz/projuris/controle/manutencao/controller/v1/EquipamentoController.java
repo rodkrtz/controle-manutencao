@@ -1,6 +1,6 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
-import br.com.rodkrtz.projuris.controle.manutencao.model.request.CadastroEquipamentoRequest;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddEquipamentoRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,5 +15,5 @@ public interface EquipamentoController {
     ResponseEntity<?> getEquipamento(@PathVariable String numeroSerie);
 
     @PutMapping
-    ResponseEntity<?> cadastrarEquipamento(@RequestBody CadastroEquipamentoRequest cadastroEquipamentoRequest);
+    ResponseEntity<?> addEquipamento(@RequestBody AddEquipamentoRequest addEquipamentoRequest);
 }

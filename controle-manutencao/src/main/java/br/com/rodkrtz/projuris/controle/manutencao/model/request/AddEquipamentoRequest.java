@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class CadastroEquipamentoRequest {
+public class AddEquipamentoRequest {
 
     private String emailCliente;
 
