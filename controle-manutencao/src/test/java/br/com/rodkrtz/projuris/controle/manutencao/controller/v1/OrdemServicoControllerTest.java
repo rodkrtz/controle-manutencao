@@ -1,10 +1,14 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -59,8 +63,9 @@ class OrdemServicoControllerTest {
         }
 
         @Test
+        @DirtiesContext
         @DisplayName("Deve retornar status NOT FOUND ao nao encontrar ordens de servicos pendentes")
-        void teste4() throws Exception {
+        void teste3() throws Exception {
             //given
             String chaveIdDeletar = "12345678";
 
