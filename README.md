@@ -1,7 +1,4 @@
 # controle-manutencao
-TODO
-documentação da api: http://localhost:8080/docs.html
-
 
 ## Instalações
 - Java JDK 8 ou superior
