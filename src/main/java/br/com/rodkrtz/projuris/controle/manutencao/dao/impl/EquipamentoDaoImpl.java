@@ -6,6 +6,8 @@ import br.com.rodkrtz.projuris.controle.manutencao.repository.EquipamentoReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class EquipamentoDaoImpl implements EquipamentoDao {
 
@@ -21,5 +23,10 @@ public class EquipamentoDaoImpl implements EquipamentoDao {
     @Override
     public Equipamento save(Equipamento equipamento) {
         return equipamentoRepository.save(equipamento);
+    }
+
+    @Override
+    public List<Equipamento> findAll() {
+        return equipamentoRepository.findAll();
     }
 }

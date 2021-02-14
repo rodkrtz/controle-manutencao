@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Rodrigo Kreutzfeld
  */
@@ -22,6 +24,12 @@ public class EquipamentoControllerImpl implements EquipamentoController {
     public ResponseEntity<?> getEquipamento(String numeroSerie) {
         Equipamento equipamento = equipamentoService.findByNumeroSerie(numeroSerie);
         return new ResponseEntity<>(equipamento, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> getEquipamentos() {
+        List<Equipamento> equipamentos = equipamentoService.getEquipamentos();
+        return new ResponseEntity<>(equipamentos, HttpStatus.OK);
     }
 
     @Override

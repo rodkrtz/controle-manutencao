@@ -4,6 +4,8 @@ import br.com.rodkrtz.projuris.controle.manutencao.model.entity.Equipamento;
 import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddEquipamentoRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * @author Rodrigo Kreutzfeld
@@ -15,4 +17,5 @@ public interface EquipamentoService {
 
     Equipamento addEquipamento(AddEquipamentoRequest addEquipamentoRequest);
 
+    List<Equipamento> getEquipamentos();
 }

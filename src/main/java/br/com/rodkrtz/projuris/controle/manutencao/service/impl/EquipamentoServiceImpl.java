@@ -10,6 +10,8 @@ import br.com.rodkrtz.projuris.controle.manutencao.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Rodrigo Kreutzfeld
  */
@@ -51,5 +53,15 @@ public class EquipamentoServiceImpl implements EquipamentoService {
 
         return equipamento;
 
+    }
+
+    @Override
+    public List<Equipamento> getEquipamentos() {
+        List<Equipamento> equipamentos = equipamentoDao.findAll();
+
+        if (equipamentos.isEmpty()) {
+            ExceptionType.NOT_FOUND.throwException("Não foi encontrado nenhum equipamento");
+        }
+        return equipamentos;
     }
 }

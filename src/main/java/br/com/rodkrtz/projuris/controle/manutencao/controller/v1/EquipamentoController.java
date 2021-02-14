@@ -14,6 +14,10 @@ public interface EquipamentoController {
     @GetMapping("{numeroSerie}")
     ResponseEntity<?> getEquipamento(@PathVariable String numeroSerie);
 
+    @GetMapping
+    ResponseEntity<?> getEquipamentos();
+
+
     @PutMapping
     ResponseEntity<?> addEquipamento(@RequestBody AddEquipamentoRequest addEquipamentoRequest);
 }
