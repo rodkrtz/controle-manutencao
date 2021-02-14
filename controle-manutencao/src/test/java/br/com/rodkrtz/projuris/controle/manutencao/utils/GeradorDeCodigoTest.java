@@ -1,23 +1,16 @@
 package br.com.rodkrtz.projuris.controle.manutencao.utils;
 
-import net.bytebuddy.utility.RandomString;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GeradorDeCodigoTest {
 
-//    public static String gerar() {
-//
-//    }
-
     @Test
-    void teste() {
-        RandomString randomString = new RandomString(5);
-        System.out.println(randomString.nextString());
-        System.out.println(randomString.nextString());
+    @DisplayName("Deve gerar uma String aleatoria de 8 caracteres")
+    void teste1() {
+        String chaveId = GeradorDeChave.gerar();
+        Assertions.assertThat(chaveId.length()).isEqualTo(8);
     }
 
 }
