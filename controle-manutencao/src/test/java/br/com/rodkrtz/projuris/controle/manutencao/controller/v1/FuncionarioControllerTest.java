@@ -69,15 +69,15 @@ class FuncionarioControllerTest {
     @Nested
     @DisplayName("PUT " + BASE_URL)
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    class Post {
+    class Put {
 
         @Test
         @DisplayName("Deve retornar status CREATED ao conseguir registrar um funcionario")
         void teste1() throws Exception {
             //given
             AddFuncionarioRequest addFuncionarioRequest = new AddFuncionarioRequest()
-                    .setEmail("func3@email.com.br")
-                    .setNome("Funcionario 3")
+                    .setEmail("novoFuncionario@email.com.br")
+                    .setNome("Novo Funcionário")
                     .setFuncao("TECNICO");
 
             //when
