@@ -36,6 +36,7 @@ public class Equipamento extends AuditEntity {
     @Column(name = "numero_serie")
     private String numeroSerie;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;

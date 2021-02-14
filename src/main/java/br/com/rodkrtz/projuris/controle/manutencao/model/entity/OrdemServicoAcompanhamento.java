@@ -1,6 +1,7 @@
 package br.com.rodkrtz.projuris.controle.manutencao.model.entity;
 
 import br.com.rodkrtz.projuris.controle.manutencao.model.enums.OSStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class OrdemServicoAcompanhamento extends AuditEntity {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @JoinColumn(name = "id_ordem_servico")
     private OrdemServico ordemServico;
