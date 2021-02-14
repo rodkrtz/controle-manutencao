@@ -18,7 +18,7 @@ public interface OrdemServicoController {
     ResponseEntity<?> listPendentes();
 
     @PutMapping
-    ResponseEntity<?> addOrdemServico(AddOrdemServicoRequest addOrdemServicoRequest);
+    ResponseEntity<?> addOrdemServico(@RequestBody AddOrdemServicoRequest addOrdemServicoRequest);
 
     @DeleteMapping("{chaveId}")
     ResponseEntity<?> removeOrdemServico(@PathVariable String chaveId);

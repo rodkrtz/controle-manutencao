@@ -50,6 +50,10 @@ public class OrdemServicoServiceImpl implements OrdemServicoService {
     public OrdemServico addOrdemServico(AddOrdemServicoRequest addOrdemServicoRequest) {
         Equipamento equipamento = equipamentoService.findByNumeroSerie(addOrdemServicoRequest.getNumeroSerieEquipamento());
 
+        if (equipamento == null) {
+            ExceptionType.BAD_REQUEST.throwException("Equipamento não encontrado.");
+        }
+
         OrdemServico ordemServico = new OrdemServico()
                 .setDescricaoProblema(addOrdemServicoRequest.getDescricaoProblema())
                 .setEquipamento(equipamento);

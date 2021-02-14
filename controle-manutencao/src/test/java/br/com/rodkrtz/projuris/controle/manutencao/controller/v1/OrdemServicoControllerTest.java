@@ -1,5 +1,7 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
+import br.com.rodkrtz.projuris.controle.manutencao.model.entity.OrdemServico;
+import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddOrdemServicoRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -8,12 +10,12 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -79,6 +81,44 @@ class OrdemServicoControllerTest {
                     .andDo(print())
                     .andExpect(status().isNotFound());
 
+        }
+    }
+
+    @Nested
+    @DisplayName("PUT " + BASE_URL)
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    class Put {
+
+        @Test
+        @DirtiesContext
+        @DisplayName("Deve registrar uma nova ordem de servico")
+        void teste1() throws Exception {
+            //given
+            AddOrdemServicoRequest addOrdemServicoRequest = new AddOrdemServicoRequest()
+                    .setDescricaoProblema("Teclado nao funciona")
+                    .setNumeroSerieEquipamento("abc321");
+
+            //when
+            ResultActions putResult = mockMvc.perform(put(BASE_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(addOrdemServicoRequest)));
+
+            //then
+            String content = putResult
+                    .andDo(print())
+                    .andExpect(
+                            status().isCreated()
+                    )
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            System.out.println(content);
+
+            OrdemServico ordemServicoCriada = objectMapper.readValue(content, OrdemServico.class);
+
+            mockMvc.perform(get(BASE_URL.concat("/").concat(ordemServicoCriada.getChaveId())))
+                    .andExpect(status().isOk());
         }
     }
 }
