@@ -1,7 +1,9 @@
 package br.com.rodkrtz.projuris.controle.manutencao.controller.v1;
 
+import br.com.rodkrtz.projuris.controle.manutencao.model.entity.Cliente;
 import br.com.rodkrtz.projuris.controle.manutencao.model.request.AddClienteRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -54,15 +56,34 @@ class ClienteControllerTest {
         @DisplayName("Deve retornar NOT FOUND")
         void teste2() throws Exception {
             //given
-            String email = "email@email.com.br";
+            String emailQueNaoExiste = "email_que_nao_existe";
 
             //when
-            ResultActions performGet = mockMvc.perform(get(BASE_URL.concat("/").concat(email)));
+            ResultActions performGet = mockMvc.perform(get(BASE_URL.concat("/").concat(emailQueNaoExiste)));
 
             //then
             performGet
                     .andDo(print())
                     .andExpect(status().isNotFound());
+        }
+
+        @Test
+        @DisplayName("Deve retornar uma lista de clientes")
+        void teste3() throws Exception {
+
+            //when
+            ResultActions performGet = mockMvc.perform(get(BASE_URL));
+
+            //then
+            String respContent = performGet
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            Cliente[] clientes = objectMapper.readValue(respContent, Cliente[].class);
+            Assertions.assertThat(clientes.length).isEqualTo(3);
         }
     }
 

@@ -6,6 +6,8 @@ import br.com.rodkrtz.projuris.controle.manutencao.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ClienteDaoImpl implements ClienteDao {
 
@@ -20,5 +22,10 @@ public class ClienteDaoImpl implements ClienteDao {
     @Override
     public void save(Cliente cliente) {
         clienteRepository.save(cliente);
+    }
+
+    @Override
+    public List<Cliente> findAll() {
+        return clienteRepository.findAll();
     }
 }

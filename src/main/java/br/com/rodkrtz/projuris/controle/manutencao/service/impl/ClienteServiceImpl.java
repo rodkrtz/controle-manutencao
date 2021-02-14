@@ -8,6 +8,8 @@ import br.com.rodkrtz.projuris.controle.manutencao.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Rodrigo Kreutzfeld
  */
@@ -43,5 +45,16 @@ public class ClienteServiceImpl implements ClienteService {
         clienteDao.save(cliente);
 
         return cliente;
+    }
+
+    @Override
+    public List<Cliente> getClientes() {
+        List<Cliente> clientes = clienteDao.findAll();
+
+        if (clientes.isEmpty()) {
+            ExceptionType.NOT_FOUND.throwException("Não foram encontrados nenhum cliente.");
+        }
+
+        return clientes;
     }
 }

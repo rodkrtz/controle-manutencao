@@ -13,4 +13,7 @@ public interface ClienteController {
 
     @GetMapping("{email}")
     ResponseEntity<?> getCliente(@PathVariable String email);
+
+    @GetMapping
+    ResponseEntity<?> getClientes();
 }

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Rodrigo Kreutzfeld
  */
@@ -28,5 +30,11 @@ public class ClienteControllerImpl implements ClienteController {
     public ResponseEntity<?> getCliente(String email) {
         Cliente cliente = clienteService.getClienteByEmail(email);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> getClientes() {
+        List<Cliente> clientes = clienteService.getClientes();
+        return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 }
