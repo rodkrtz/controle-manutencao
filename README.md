@@ -20,7 +20,7 @@ Na raiz do projeto, executar:
 
 `mvn test`
 
-### Docuentação da API
+### Documentação da API
 
 `http://localhost:8080/docs.html`
 
